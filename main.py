@@ -9,7 +9,11 @@ from scoreboard import Scoreboard
 app = Flask(__name__)
 
 @app.route('/')
-def run_game():
+def index():
+    return render_template('index.html')
+
+@app.route('/play')
+def play_game():
     screen = Screen()
     screen.setup(width=600, height=600)
     screen.bgcolor("black")
@@ -50,6 +54,7 @@ def run_game():
                 snake.reset()
 
     screen.exitonclick()
+    return 'Game over'
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
